@@ -2,8 +2,8 @@ name: Refresh V13 public indicators
 on:
   workflow_dispatch:
   schedule:
-  # 18:30 KST = 09:30 UTC on weekdays
-  - cron: '30 9 * * 1-5'
+    # 18:30 KST = 09:30 UTC on weekdays
+    - cron: '30 9 * * 1-5'
 permissions:
   contents: write
   pages: write
