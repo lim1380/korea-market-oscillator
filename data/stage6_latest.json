@@ -1,0 +1,18 @@
+{
+  "date": "20261104",
+  "start_date": "20261006",
+  "window": "20 KOSPI sessions (21 aligned closing prices)",
+  "equity": "KOSPI price index",
+  "equity_return_20d_pct": -18.1173,
+  "bond": "KODEX 국고채3년",
+  "bond_code": "114260",
+  "bond_return_20d_pct": 0.9687,
+  "equity_minus_bond_20d_pctpt": -19.0859,
+  "start_kospi": 6941.39,
+  "end_kospi": 5683.8,
+  "start_bond_etf": 61940.0,
+  "end_bond_etf": 62540.0,
+  "source": "KRX OPEN API daily closes",
+  "signal_status": "not_calculated",
+  "notice": "Price-only comparison, not total return. ETF distributions, corporate actions and spread/slippage are not adjusted; not a BUY/SELL signal."
+}
