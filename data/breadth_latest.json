@@ -1,0 +1,30 @@
+{
+  "date": "20261103",
+  "observed_stocks": 2675,
+  "method": "KOSPI+KOSDAQ ordinary KRX issue codes; close>SMA with current close included; prior 252 sessions for 52w close high/low; requires valid close on every relevant session",
+  "breadth": {
+    "20": {
+      "above_count": 371,
+      "eligible_count": 2670,
+      "above_pct": 13.9
+    },
+    "60": {
+      "above_count": 469,
+      "eligible_count": 2661,
+      "above_pct": 17.62
+    },
+    "200": {
+      "above_count": 540,
+      "eligible_count": 2647,
+      "above_pct": 20.4
+    }
+  },
+  "high_52w_count": 10,
+  "low_52w_count": 276,
+  "high_52w_pct": 0.38,
+  "low_52w_pct": 10.5,
+  "high_52w_minus_low_52w_pct": -10.12,
+  "eligible_52w_stocks": 2628,
+  "signal_status": "not_calculated",
+  "notice": "These are market breadth indicators, not the complete V13 BUY/SELL engine."
+}
