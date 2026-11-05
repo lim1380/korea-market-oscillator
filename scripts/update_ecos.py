@@ -42,7 +42,7 @@ def parse(rows, label):
     for r in rows:
         name=str(r.get('ITEM_NAME1') or '')
         # Exact substring verification to prevent silently using another instrument.
-        if label not in name.replace(' ', ''):
+        if label.replace(' ', '') not in name.replace(' ', ''):
             raise RuntimeError(f'Unexpected ECOS item name for {label}: {name}')
         d=str(r.get('TIME',''))
         v=str(r.get('DATA_VALUE','')).strip().replace(',','')
