@@ -1,0 +1,22 @@
+name: V13 Stage 6 - Test KRX bond ETF relative returns
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  stage6-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compute KOSPI minus bond ETF 20-session returns
+        env:
+          KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+        run: python3 scripts/update_stage6.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage6-preview-json
+          path: |
+            data/stage6_latest.json
+            data/stage6_history.json
+          retention-days: 7
