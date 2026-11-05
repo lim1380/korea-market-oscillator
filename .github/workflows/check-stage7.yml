@@ -1,0 +1,13 @@
+name: V13 Stage 7 - Audit historical V7 references
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit-v7-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit archived V7 vs official KOSPI reference
+        run: python3 scripts/audit_stage7.py
