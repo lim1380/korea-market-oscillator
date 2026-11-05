@@ -1,0 +1,18 @@
+name: V13 Stage 7C - Evaluate independent candidate model
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  research-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Evaluate transparent research-only 7C score model
+        run: python3 scripts/research_v7c.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7c-research-output
+          path: audit_output/
+          retention-days: 14
