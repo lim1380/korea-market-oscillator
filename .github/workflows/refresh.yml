@@ -1,4 +1,4 @@
-name: Refresh V13 public indicators
+name: Refresh V13 public indicators and original backtest signals
 on:
   workflow_dispatch:
   schedule:
@@ -41,7 +41,15 @@ jobs:
         env:
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
         run: python3 scripts/update_stage6.py
-      - name: Save KRX indicator history for next run
+      - name: Set up Python for verified V7 strategy
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install V7 calculation dependencies
+        run: python3 -m pip install --disable-pip-version-check 'numpy>=1.26,<3' 'pandas>=2.1,<3'
+      - name: Replay V7 2160 sessions and certify V13 position if possible
+        run: python3 scripts/update_v13_original.py
+      - name: Save KRX indicators and V7 strategy status for next run
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -49,8 +57,9 @@ jobs:
           git add data/krx_stock_rolling.csv.gz data/breadth_latest.json data/breadth_history.json
           git add data/kospi_index_history.json data/stage5_latest.json data/stage5_history.json
           git add data/stage6_latest.json data/stage6_history.json
+          git add data/v13_backtested_latest.json data/v13_kospi_forward_history.json
           if ! git diff --cached --quiet; then
-            git commit -m 'Update V13 public indicators'
+            git commit -m 'Update V13 public indicators and original archived-model status'
             git push
           fi
       - uses: actions/configure-pages@v5
