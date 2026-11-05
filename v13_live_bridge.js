@@ -90,3 +90,71 @@
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>init().catch(console.error),{once:true});
   else init().catch(console.error);
 })();
+
+/* Market status, version 2026-11-05. This is a descriptive risk dashboard,
+   NOT a replacement for the original V7 BUY/SELL engine or a trading signal. */
+(() => {
+  'use strict';
+  const get = n => fetch('./data/'+n+'?v='+Date.now(), {cache:'no-store'}).then(r => {
+    if(!r.ok) throw Error(n+' HTTP '+r.status); return r.json();
+  });
+  const num = x => typeof x === 'number' && Number.isFinite(x);
+  function dateValue(x) {
+    if(!/^\d{8}$/.test(x||'')) return NaN;
+    const iso=x.slice(0,4)+'-'+x.slice(4,6)+'-'+x.slice(6,8);
+    const ms=Date.parse(iso+'T12:00:00+09:00');
+    return !Number.isNaN(ms) && new Date(ms).toISOString().slice(0,10) === iso ? ms : NaN;
+  }
+  function show(title,desc,color,date) {
+    let panel=document.getElementById('v13-market-status');
+    if(!panel){
+      panel=document.createElement('section');panel.id='v13-market-status';panel.className='card';
+      panel.style.margin='14px 0';
+      const next=[...document.querySelectorAll('h2.section')].find(x=>x.textContent.includes('공포·탐욕'));
+      if(next)next.before(panel);else document.querySelector('main')?.prepend(panel);
+    }
+    panel.replaceChildren();
+    const h=document.createElement('h3');h.textContent='V13 시장 상태 점검 (참고용)';
+    const v=document.createElement('div');v.className='big';v.textContent=title;v.style.color=color;
+    const d=document.createElement('p');d.className='rule';d.textContent=desc;
+    const f=document.createElement('p');f.className='foot';
+    f.textContent=(date?'기준일 '+date.slice(0,4)+'-'+date.slice(4,6)+'-'+date.slice(6)+' · ':'')+
+      '사전 정의된 시장위험 경계값을 표시합니다. 원본 V7 매매신호 또는 검증된 투자전략이 아닙니다.';
+    panel.append(h,v,d,f);
+  }
+  async function run() {
+    try {
+      const [k,b,s,t]=await Promise.all([
+        get('krx_latest.json'),get('breadth_latest.json'),
+        get('stage5_latest.json'),get('stage6_latest.json')]);
+      const day=k.date,ms=dateValue(day);
+      if(!Number.isFinite(ms)||Date.now()-ms>7*86400000||ms>Date.now()+86400000||
+         [b,s,t].some(x=>x.date!==day))throw Error('데이터 기준일이 오래되었거나 일치하지 않습니다');
+      const ratio=k.advancing_value_ratio_pct,b20=b.breadth?.['20']?.above_pct,
+            dist=s.kospi_sma125_distance_pct,vix=s.vkospi,
+            rel=t.equity_minus_bond_20d_pctpt;
+      if(![ratio,b20,dist,vix,rel].every(num)||ratio<0||ratio>100||b20<0||b20>100||
+          vix<=0||Math.abs(dist)>150||Math.abs(rel)>150)
+        throw Error('필수 지표가 누락되었거나 범위가 비정상입니다');
+      const flags=[
+        ['상승 거래대금 50% 이하',ratio<=50],
+        ['20일선 상회 종목 30% 미만',b20<30],
+        ['KOSPI 125일선 이탈',dist<0],
+        ['VKOSPI 35 이상',vix>=35],
+        ['KOSPI-국채ETF 상대수익률 음수',rel<0]
+      ];
+      const failed=flags.filter(x=>x[1]).map(x=>x[0]);
+      const label=failed.length>=3?'위험 경계 · 신규 매수 보류':
+        ratio<=50?'관망 · 신규 매수 필터 미충족':'중립 · 매수 추가 검증 필요';
+      show(label,`경계 조건 ${failed.length}/5개 해당. `+
+        (failed.length?failed.join(' · ')+'. ':'')+
+        '이 표시는 시장 진단일 뿐 매도 명령은 아닙니다. 원본 V7 BUY/SELL 점수는 아직 계산되지 않았습니다.',
+        failed.length>=3?'#ff7880':'#f5c34d',day);
+    }catch(err){
+      show('자료 확인 필요 · 판단 보류',err.message+
+        '. 데이터가 누락되거나 수집일이 불일치할 때는 판단하지 않습니다.','#f5c34d',null);
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run,{once:true});
+  else run();
+})();
