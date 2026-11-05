@@ -1,0 +1,18 @@
+name: V13 Stage 7B - Compare historical V6-V7 scores
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  compare-source-scores:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit V6 A-F and V7 stored scores
+        run: python3 scripts/compare_v6_v7_sources.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stage7b-comparison
+          path: audit_output/
+          retention-days: 14
