@@ -1,0 +1,18 @@
+{
+  "date": "20261104",
+  "source": "KRX OPEN API",
+  "kospi_close": 5683.8,
+  "kospi_sma125": 7079.0444,
+  "kospi_sma125_distance_pct": -19.7095,
+  "kospi_valid_sessions": 125,
+  "vkospi": 56.04,
+  "vkospi_index_name": "코스피 200 변동성지수",
+  "kospi200_pcr_volume": 0.559378,
+  "put_volume": 51126,
+  "call_volume": 91398,
+  "put_contracts": 4504,
+  "call_contracts": 4504,
+  "options_product": "코스피200 옵션 (일반 옵션만, 미니/위클리 제외)",
+  "signal_status": "not_calculated",
+  "notice": "These are raw Stage 5 indicators, NOT a completed V13 BUY/SELL score."
+}
