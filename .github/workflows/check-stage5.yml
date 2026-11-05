@@ -1,0 +1,14 @@
+name: V13 Stage 5 - Check KRX API permissions
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-three-krx-services:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check KOSPI, derivatives index and options API permissions
+        env:
+          KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+        run: python3 scripts/check_stage5_apis.py
