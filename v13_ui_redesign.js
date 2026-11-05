@@ -19,7 +19,7 @@
 @media(max-width:800px){#${ROOT} .hero{grid-template-columns:1fr}#${ROOT} .bigpos{border-left:0;border-top:1px solid #405364;padding:20px 0 0}#${ROOT} .seven,#${ROOT} .charts{grid-template-columns:1fr}#${ROOT} .topin{align-items:flex-start;flex-direction:column;padding-top:16px;padding-bottom:16px}#${ROOT} .topright{width:100%}}@media(max-width:600px){#${ROOT} .wrap{padding-left:15px;padding-right:15px}#${ROOT} .hero{padding:22px 20px}#${ROOT} .grid3{grid-template-columns:1fr;gap:9px}#${ROOT} .mini{min-height:0;padding:15px 17px}#${ROOT} .mini .number{font-size:26px}#${ROOT} .seven{gap:10px}#${ROOT} .metric{padding:17px}#${ROOT} .metric-value{font-size:26px}#${ROOT} .sectionhead h2{font-size:19px}#${ROOT} .signalbox{display:block}#${ROOT} .signalbox>div:last-child{margin-top:10px}}
 `;
    const dateStyle = `#v13-modern #v13-data-date{font-size:18px;font-weight:800;color:#ffffff;padding:9px 16px;letter-spacing:.3px}`;
-  const style = document.createElement('style'); style.id = 'v13-modern-styles'; style.textContent = css; document.head.appendChild(style);
+  const style = document.createElement('style'); style.id = 'v13-modern-styles'; style.textContent = css + dateStyle; document.head.appendChild(style);
   const fmt = (n, digits=1) => typeof n === 'number' && Number.isFinite(n) ? n.toLocaleString('ko-KR', {minimumFractionDigits:digits, maximumFractionDigits:digits}) : '—';
   const safeDate = s => /^\d{8}$/.test(String(s || '')) ? `${s.slice(0,4)}.${s.slice(4,6)}.${s.slice(6,8)}` : '확인 필요';
   const freshDate = s => {if(!/^\d{8}$/.test(String(s||'')))return false;const t=Date.parse(s.slice(0,4)+'-'+s.slice(4,6)+'-'+s.slice(6,8)+'T00:00:00+09:00');return Number.isFinite(t) && Date.now()-t<8*86400000 && Date.now()-t> -86400000;};
