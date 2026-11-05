@@ -1,0 +1,123 @@
+{
+  "schema_version": "v13-original-archive-bound-v1",
+  "model": "Archived V7 exposure/actions + V13 traded-value>50% BUY filter; SELL unchanged",
+  "market_data_date": "20261104",
+  "reference_end": "20261023",
+  "reference_start": "20180102",
+  "review_cadence_sessions": 5,
+  "review_origin": "20180102 (index 0)",
+  "archive_validation": {
+    "sessions": 2160,
+    "exposure_mismatches": 0,
+    "action_mismatches": 0,
+    "buy_events": 43,
+    "sell_events": 43,
+    "status": "EXACT_REPLAY"
+  },
+  "historical_v13_qualified_buy_events": 35,
+  "historical_v7_buy_events": 43,
+  "historical_v7_sell_events": 43,
+  "last_archived_v7_event_date": "20261019",
+  "last_archived_v7_sell_date": "20261019",
+  "latest_rising_value_ratio_pct": 45.93,
+  "latest_buy_filter_pass": false,
+  "forward_status": "CERTIFIED_ORIGINAL_POSITION",
+  "certified_original_target_exposure_pct": 0.0,
+  "possible_original_target_exposure_pct": [
+    0
+  ],
+  "latest_action_certified": "HOLD",
+  "last_review_date": "20261102",
+  "last_review_risk_lower": 66.525,
+  "last_review_risk_upper": 72.525,
+  "last_market_risk_lower": 66.7225,
+  "last_market_risk_upper": 72.7225,
+  "new_sessions_since_archive": 8,
+  "forward_audit": [
+    {
+      "date": "20261026",
+      "session_index": 2160,
+      "review": true,
+      "risk_lower": 71.6975,
+      "risk_upper": 77.6975,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261027",
+      "session_index": 2161,
+      "review": false,
+      "risk_lower": 72.79,
+      "risk_upper": 78.79,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261028",
+      "session_index": 2162,
+      "review": false,
+      "risk_lower": 65.73,
+      "risk_upper": 71.73,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261029",
+      "session_index": 2163,
+      "review": false,
+      "risk_lower": 65.83,
+      "risk_upper": 71.83,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261030",
+      "session_index": 2164,
+      "review": false,
+      "risk_lower": 66.425,
+      "risk_upper": 72.425,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261102",
+      "session_index": 2165,
+      "review": true,
+      "risk_lower": 66.525,
+      "risk_upper": 72.525,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261103",
+      "session_index": 2166,
+      "review": false,
+      "risk_lower": 66.7225,
+      "risk_upper": 72.7225,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261104",
+      "session_index": 2167,
+      "review": false,
+      "risk_lower": 66.7225,
+      "risk_upper": 72.7225,
+      "possible_exposure_pct": [
+        0
+      ]
+    }
+  ],
+  "buy_score_status": "NOT_CALCULATED — original E includes KOSDAQ/VKOSPI/KTB3 futures historical ranks",
+  "reversal_status": "BOUND_ONLY — historical 30pt reversal flag not yet regenerated",
+  "v13_buy_status": "BLOCKED_UNLESS_EXACT_V7_BUY_EVENT_CONFIRMED",
+  "current_market_position_basis": "Original V7 target equity position is certifiable only if all possible inputs yield the same position.",
+  "limitations": "Research backtest is exploratory, not external OOS; 0% means target exposure not a newly generated SELL order. No execution advice."
+}
