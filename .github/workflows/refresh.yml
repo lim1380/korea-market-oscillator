@@ -2,10 +2,10 @@ name: Refresh V13 public indicators
 on:
   workflow_dispatch:
   schedule:
-    # 18:37 Korea Standard Time = 09:37 UTC, weekdays
-    - cron: '37 9 * * 1-5'
+    # 19:17 KST = 10:17 UTC on weekdays
+    - cron: '17 10 * * 1-5'
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
@@ -19,10 +19,23 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Fetch ECOS credit-spread data
+      - name: Fetch ECOS credit spread
         env:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: python3 scripts/update_ecos.py
+      - name: Fetch KRX daily market breadth
+        env:
+          KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+        run: python3 scripts/update_krx.py
+      - name: Save KRX indicator history for next run
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/krx_history.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update KRX market breadth history'
+            git push
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
