@@ -21,6 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Fetch ECOS credit spread
+        continue-on-error: true
         env:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
         run: python3 scripts/update_ecos.py
