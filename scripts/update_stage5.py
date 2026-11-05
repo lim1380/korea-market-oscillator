@@ -87,9 +87,13 @@ def options_pcr(rows):
         if right not in volume:
             raise RuntimeError(f'Unexpected option right {right!r}')
         code = str(row.get('ISU_CD') or '').strip()
-        if not code or code in seen:
-            raise RuntimeError('Duplicate/missing option contract ID')
-        seen.add(code)
+        name = str(row.get('ISU_NM') or '').strip()
+        if not name:
+            raise RuntimeError('Missing option contract name')
+        identity = (right, code, name)
+        if identity in seen:
+            raise RuntimeError(f'Duplicate option record: {identity!r}')
+        seen.add(identity)
         v = num(row.get('ACC_TRDVOL'))
         if v is None or v < 0 or not v.is_integer():
             raise RuntimeError(f'Invalid option volume for {code}')
