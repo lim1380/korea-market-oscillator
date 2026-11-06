@@ -4,5 +4,11 @@
     "equity_return_20d_pct": -18.1173,
     "bond_return_20d_pct": 0.9687,
     "equity_minus_bond_20d_pctpt": -19.0859
+  },
+  {
+    "date": "20261105",
+    "equity_return_20d_pct": -20.8719,
+    "bond_return_20d_pct": 1.1386,
+    "equity_minus_bond_20d_pctpt": -22.0104
   }
 ]
