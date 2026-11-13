@@ -40,5 +40,12 @@
     "kospi_sma125_distance_pct": -23.2134,
     "vkospi": 52.76,
     "kospi200_pcr_volume": 0.711812
+  },
+  {
+    "date": "20261112",
+    "kospi_close": 5342.73,
+    "kospi_sma125_distance_pct": -23.4627,
+    "vkospi": 51.32,
+    "kospi200_pcr_volume": 0.938467
   }
 ]
