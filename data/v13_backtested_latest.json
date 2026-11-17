@@ -1,7 +1,7 @@
 {
   "schema_version": "v13-original-archive-bound-v1",
   "model": "Archived V7 exposure/actions + V13 traded-value>50% BUY filter; SELL unchanged",
-  "market_data_date": "20261113",
+  "market_data_date": "20261116",
   "reference_end": "20261023",
   "reference_start": "20180102",
   "review_cadence_sessions": 5,
@@ -19,7 +19,7 @@
   "historical_v7_sell_events": 43,
   "last_archived_v7_event_date": "20261019",
   "last_archived_v7_sell_date": "20261019",
-  "latest_rising_value_ratio_pct": 38.66,
+  "latest_rising_value_ratio_pct": 16.15,
   "latest_buy_filter_pass": false,
   "forward_status": "CERTIFIED_ORIGINAL_POSITION",
   "certified_original_target_exposure_pct": 0.0,
@@ -27,23 +27,13 @@
     0
   ],
   "latest_action_certified": "HOLD",
-  "last_review_date": "20261109",
-  "last_review_risk_lower": 75.17,
-  "last_review_risk_upper": 81.17,
-  "last_market_risk_lower": 73.98,
-  "last_market_risk_upper": 79.98,
-  "new_sessions_since_archive": 15,
+  "last_review_date": "20261116",
+  "last_review_risk_lower": 74.3775,
+  "last_review_risk_upper": 80.3775,
+  "last_market_risk_lower": 74.3775,
+  "last_market_risk_upper": 80.3775,
+  "new_sessions_since_archive": 16,
   "forward_audit": [
-    {
-      "date": "20261026",
-      "session_index": 2160,
-      "review": true,
-      "risk_lower": 71.6975,
-      "risk_upper": 77.6975,
-      "possible_exposure_pct": [
-        0
-      ]
-    },
     {
       "date": "20261027",
       "session_index": 2161,
@@ -180,6 +170,16 @@
       "review": false,
       "risk_lower": 73.98,
       "risk_upper": 79.98,
+      "possible_exposure_pct": [
+        0
+      ]
+    },
+    {
+      "date": "20261116",
+      "session_index": 2175,
+      "review": true,
+      "risk_lower": 74.3775,
+      "risk_upper": 80.3775,
       "possible_exposure_pct": [
         0
       ]
