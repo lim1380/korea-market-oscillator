@@ -75,5 +75,12 @@
     "advancing_stocks": 1452,
     "declining_stocks": 1079,
     "valid_stocks": 2771
+  },
+  {
+    "date": "20261119",
+    "advancing_value_ratio_pct": 78.49,
+    "advancing_stocks": 1732,
+    "declining_stocks": 806,
+    "valid_stocks": 2771
   }
 ]
